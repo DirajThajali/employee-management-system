@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Employees</title>
+    <title>Employee Detail</title>
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -19,34 +19,24 @@
 
 <div class="container">
     <div class="pt-4 pb-2">
-        <h2>Employees List</h2>
+        <h2>Employees Details</h2>
         <hr/>
     </div>
 
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </thead>
-        <tbody>
-        <tr th:each="employee : ${employees}">
-            <td th:text="${employee.id}">ID</td>
-            <td th:text="${employee.firstName}">First Name</td>
-            <td th:text="${employee.lastName}">Last Name</td>
-            <td th:text="${employee.email}">Email</td>
-            <td><a class="btn btn-info" th:href="@{'/employees/' + ${employee.id} + '/update'}">Update</a>
-                <a class="btn btn-info" th:href="@{'/employees/' + ${employee.id} + '/view'}">Details</a>
-                <a class="btn btn-danger" th:href="@{'/employees/' + ${employee.id} + '/delete'}">Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div>
-        <a class="btn btn-primary" th:href="@{'/employees/new'}">Add New Employee</a>
+    <div class="row">
+        <b>First Name : </b> <p th:text="${employee.firstName}">Detail</p>
     </div>
+    <div class="row">
+        <b>Last Name : </b> <p th:text="${employee.lastName}">Detail</p>
+    </div>
+    <div class="row">
+        <b>Email : </b> <p th:text="${employee.email}">Detail</p>
+    </div>
+
+    <div class="row">
+        <a class="btn btn-primary" th:href="@{'/employees'}">Back to Employees List</a>
+    </div>
+
 </div>
 
 </body>
