@@ -1,7 +1,6 @@
 package com.practice.employeemanagementsystem.model;
 
 import lombok.*;
-import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +11,16 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Table(name = "employees")
-public class Employee {
+public class Employee extends BaseEntity {
+
+    @Builder
+    public Employee(Long id, String firstName, String lastName, String email) {
+        super(id);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
     @Column(name = "first_name")
     public String firstName;
