@@ -41,6 +41,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public EmployeeCommand findEmployeeCommandById(Long employeeCommandId) {
+        return employeeToEmployeeCommandConverter.convert(findEmployeeById(employeeCommandId));
+    }
+
+    @Override
     public EmployeeCommand saveEmployeeCommand(EmployeeCommand employeeCommand) {
         Employee detachedEmployee = employeeCommandToEmployeeConverter.convert(employeeCommand);
 

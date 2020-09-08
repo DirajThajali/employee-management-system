@@ -9,7 +9,9 @@ public interface EmployeeService {
 
     Set<Employee> getEmployees();
 
-    Employee findEmployeeById(Long id);
+    Employee findEmployeeById(Long employeeId);
+
+    EmployeeCommand findEmployeeCommandById(Long employeeCommandId);
 
     EmployeeCommand saveEmployeeCommand(EmployeeCommand employeeCommand);
 }

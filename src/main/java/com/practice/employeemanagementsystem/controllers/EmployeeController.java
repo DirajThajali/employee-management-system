@@ -53,4 +53,11 @@ public class EmployeeController {
         return "redirect:/employees/" + savedEmployeeCommand.getId() + "/view";
     }
 
+    @GetMapping("/employees/{id}/update")
+    public String updateEmployee(@PathVariable String id, Model model) {
+        model.addAttribute("employeeCommand", employeeService.findEmployeeCommandById(Long.valueOf(id)));
+        model.addAttribute("action", "Update Employee");
+        return EMPLOYEE_FORM_URL;
+    }
+
 }
