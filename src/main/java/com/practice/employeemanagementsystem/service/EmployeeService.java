@@ -1,12 +1,15 @@
 package com.practice.employeemanagementsystem.service;
 
+import com.practice.employeemanagementsystem.commands.EmployeeCommand;
 import com.practice.employeemanagementsystem.model.Employee;
 
 import java.util.Set;
 
 public interface EmployeeService {
 
-    public Set<Employee> getEmployees();
+    Set<Employee> getEmployees();
 
-    public Employee findEmployeeById(Long id);
+    Employee findEmployeeById(Long id);
+
+    EmployeeCommand saveEmployeeCommand(EmployeeCommand employeeCommand);
 }
