@@ -14,4 +14,6 @@ public interface EmployeeService {
     EmployeeCommand findEmployeeCommandById(Long employeeCommandId);
 
     EmployeeCommand saveEmployeeCommand(EmployeeCommand employeeCommand);
+
+    void deleteEmployeeById(Long id);
 }

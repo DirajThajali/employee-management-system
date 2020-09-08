@@ -53,4 +53,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         log.debug("Employee Saved With ID: " + savedEmployee.getId());
         return employeeToEmployeeCommandConverter.convert(savedEmployee);
     }
+
+    @Override
+    public void deleteEmployeeById(Long id) {
+        employeeRepository.deleteById(id);
+    }
 }
