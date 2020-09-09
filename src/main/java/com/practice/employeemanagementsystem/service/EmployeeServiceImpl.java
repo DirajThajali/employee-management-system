@@ -3,6 +3,7 @@ package com.practice.employeemanagementsystem.service;
 import com.practice.employeemanagementsystem.commands.EmployeeCommand;
 import com.practice.employeemanagementsystem.converter.EmployeeCommandToEmployeeConverter;
 import com.practice.employeemanagementsystem.converter.EmployeeToEmployeeCommandConverter;
+import com.practice.employeemanagementsystem.exceptions.NotFoundException;
 import com.practice.employeemanagementsystem.model.Employee;
 import com.practice.employeemanagementsystem.repositories.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee findEmployeeById(Long id) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
         if (optionalEmployee.isEmpty()) {
-            throw new RuntimeException("Employee Not Found with ID :" + id);
+            throw new NotFoundException("Employee Not Found with ID :" + id);
         }
         return optionalEmployee.get();
     }

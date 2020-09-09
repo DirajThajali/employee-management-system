@@ -1,15 +1,15 @@
 package com.practice.employeemanagementsystem.controllers;
 
 import com.practice.employeemanagementsystem.commands.EmployeeCommand;
+import com.practice.employeemanagementsystem.exceptions.NotFoundException;
 import com.practice.employeemanagementsystem.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
@@ -64,6 +64,14 @@ public class EmployeeController {
     public String deleteEmployee(@PathVariable String id) {
         employeeService.deleteEmployeeById(Long.valueOf(id));
         return "redirect:/employees";
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFoundException(Exception exception) {
+        ModelAndView modelAndView = new ModelAndView("404error");
+        modelAndView.addObject("exception", exception);
+        return modelAndView;
     }
 
 }
