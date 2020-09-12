@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 @Slf4j
 @Controller
 public class EmployeeController {
@@ -43,10 +45,14 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees/handleform")
-    //add @Valid annotation on model attribute
-    public String handleCreateOrUpdate(@ModelAttribute EmployeeCommand employeeCommand, BindingResult bindingResult) {
+    public String handleCreateOrUpdate(@Valid @ModelAttribute EmployeeCommand employeeCommand,
+                                       BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             log.debug("Error while Binding EmployeeCommand to Employee");
+            bindingResult.getAllErrors().forEach(objectError -> {
+                log.debug(objectError.getDefaultMessage());
+            });
+            model.addAttribute("action", "Add Employee");
             return EMPLOYEE_FORM_URL;
         }
         EmployeeCommand savedEmployeeCommand = employeeService.saveEmployeeCommand(employeeCommand);
